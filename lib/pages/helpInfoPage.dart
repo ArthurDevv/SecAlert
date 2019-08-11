@@ -22,7 +22,8 @@ class HelpInfoPage extends StatelessWidget {
               SizedBox(height: 16.0),
               Card(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
                 margin: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,8 +34,9 @@ class HelpInfoPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.grey[100],
                         borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10.0),
-                            topLeft: Radius.circular(10.0)),
+                          bottomLeft: Radius.circular(10.0),
+                          topLeft: Radius.circular(10.0),
+                        ),
                         image: DecorationImage(
                           alignment: Alignment.centerRight,
                           fit: BoxFit.contain,
@@ -46,38 +48,44 @@ class HelpInfoPage extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 16.0),
                       child: Container(
                         height: 200.0,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Send Alerts\nquickly\nand\nsafely',
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'Send Alerts\nquickly\nand\nsafely',
                               style: TextStyle(
                                 color: Colors.red[900],
                                 fontWeight: FontWeight.bold,
-                                fontSize: 24.0,
+                                fontSize: 18.0,
                               ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: '\n\nall it takes is',
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12.0,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '\n3 Presses',
+                                  style: TextStyle(
+                                    color: Colors.red[900],
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '\nof your power button',
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12.0,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              height: 16.0,
-                            ),
-                            Text('all it takes is'),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                            Text(
-                              '3 Presses',
-                              style: TextStyle(
-                                color: Colors.red[900],
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                            Text('of your power button'),
-                          ],
+                          ),
                         ),
                       ),
                     ),
@@ -101,7 +109,7 @@ class HelpInfoPage extends StatelessWidget {
               SizedBox(height: 8.0),
               QuickTip(
                 tipImage: 'assets/images/quicktip_contacts.png',
-                tipHeading: 'Select contacts close the location',
+                tipHeading: 'Select contacts close to the location',
                 tipBody:
                     'This is to ensure that the most relevant people are reached out to in times of emergencies',
               ),

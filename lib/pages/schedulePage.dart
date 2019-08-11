@@ -14,6 +14,7 @@ class _SchedulePageState extends State<SchedulePage> {
       child: Text(day),
       textColor: Colors.black54,
       onPressed: () {},
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     );
   }
 
@@ -157,6 +158,7 @@ class _SchedulePageState extends State<SchedulePage> {
                         crossAxisCount: 4,
                         shrinkWrap: true,
                         childAspectRatio: 2.0,
+                        physics: NeverScrollableScrollPhysics(),
                         children: <Widget>[
                           makeGridButton('Sunday'),
                           makeGridButton('Monday'),

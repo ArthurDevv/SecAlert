@@ -47,7 +47,7 @@ class _RecentLocsCardState extends State<RecentLocsCard> {
               Center(
                 child: Icon(
                   EvaIcons.pinOutline,
-                  color: Colors.red[900],
+                  color: Colors.black54,
                   size: 24.0,
                   // color: Colors.black54,
                 ),

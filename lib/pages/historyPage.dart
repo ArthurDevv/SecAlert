@@ -11,8 +11,8 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage>
     with TickerProviderStateMixin {
   final _tabs = <Tab>[
-    Tab(text: 'Recent Locations'),
-    Tab(text: 'Recent Alerts'),
+    Tab(text: 'Locations'),
+    Tab(text: 'Alerts'),
   ];
 
   TabController _tabController;
@@ -80,156 +80,159 @@ class _HistoryPageState extends State<HistoryPage>
           ),
           Flexible(
             fit: FlexFit.tight,
-            child: TabBarView(controller: _tabController, children: [
-              Container(
-                child: Center(
-                  child: LocList(initialLocs),
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                Container(
+                  child: Center(
+                    child: LocList(initialLocs),
+                  ),
                 ),
-              ),
-              Theme(
-                data: Theme.of(context)
-                    .copyWith(dividerColor: Colors.transparent),
-                child: SingleChildScrollView(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 70.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: ExpansionTile(
-                            initiallyExpanded: true,
-                            title: Text(
-                              'Alerts Sent',
-                              style: TextStyle(
-                                color: Colors.red[900],
-                                fontWeight: FontWeight.bold,
+                Theme(
+                  data: Theme.of(context)
+                      .copyWith(dividerColor: Colors.transparent),
+                  child: SingleChildScrollView(
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 70.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: ExpansionTile(
+                              initiallyExpanded: true,
+                              title: Text(
+                                'Alerts Sent',
+                                style: TextStyle(
+                                  color: Colors.red[900],
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
+                              children: <Widget>[
+                                ListTile(
+                                  leading: Icon(EvaIcons.paperPlaneOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Robbery alert sent from Home on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.paperPlaneOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Robbery alert sent from Home on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.paperPlaneOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Robbery alert sent from Home on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.paperPlaneOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Robbery alert sent from Home on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.paperPlaneOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Robbery alert sent from Home on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.paperPlaneOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Robbery alert sent from Home on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.paperPlaneOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Robbery alert sent from Home on 02/08/19 at 12:15'),
+                                ),
+                              ],
                             ),
-                            children: <Widget>[
-                              ListTile(
-                                leading: Icon(EvaIcons.paperPlaneOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Robbery alert sent from Home on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.paperPlaneOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Robbery alert sent from Home on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.paperPlaneOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Robbery alert sent from Home on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.paperPlaneOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Robbery alert sent from Home on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.paperPlaneOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Robbery alert sent from Home on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.paperPlaneOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Robbery alert sent from Home on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.paperPlaneOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Robbery alert sent from Home on 02/08/19 at 12:15'),
-                              ),
-                            ],
                           ),
-                        ),
-                        SizedBox(height: 8.0),
-                        QuickTip(
-                          tipImage: 'assets/images/quicktip_countdown.png',
-                          tipHeading: 'Countdown and False Alarm',
-                          tipBody:
-                              "When you're trying to send an alert a countdown popup will show, you can cancel your alert or specify its type here",
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: ExpansionTile(
-                            title: Text(
-                              'Alerts Recieved',
-                              style: TextStyle(
-                                color: Colors.red[900],
-                                fontWeight: FontWeight.bold,
+                          SizedBox(height: 8.0),
+                          QuickTip(
+                            tipImage: 'assets/images/quicktip_countdown.png',
+                            tipHeading: 'Countdown and False Alarm',
+                            tipBody:
+                                "When you're trying to send an alert a countdown popup will show, you can cancel your alert or specify its type here",
+                          ),
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: ExpansionTile(
+                              title: Text(
+                                'Alerts Recieved',
+                                style: TextStyle(
+                                  color: Colors.red[900],
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
+                              children: <Widget>[
+                                ListTile(
+                                  leading: Icon(EvaIcons.messageSquareOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.messageSquareOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.messageSquareOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.messageSquareOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.messageSquareOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.messageSquareOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
+                                ),
+                                ListTile(
+                                  leading: Icon(EvaIcons.messageSquareOutline,
+                                      color: Colors.red[900]),
+                                  title: Text(
+                                      'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
+                                ),
+                              ],
                             ),
-                            children: <Widget>[
-                              ListTile(
-                                leading: Icon(EvaIcons.messageSquareOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.messageSquareOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.messageSquareOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.messageSquareOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.messageSquareOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.messageSquareOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
-                              ),
-                              ListTile(
-                                leading: Icon(EvaIcons.messageSquareOutline,
-                                    color: Colors.red[900]),
-                                title: Text(
-                                    'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
-                              ),
-                            ],
                           ),
-                        ),
-                        SizedBox(height: 8.0),
-                        QuickTip(
-                          tipImage: 'assets/images/quicktip_searchgps.png',
-                          tipHeading: 'Search for a GPS location',
-                          tipBody:
-                              'On the Map page you can search for GPS coordinates you may have received from alert messages',
-                        ),
-                      ],
+                          SizedBox(height: 8.0),
+                          QuickTip(
+                            tipImage: 'assets/images/quicktip_searchgps.png',
+                            tipHeading: 'Search for a GPS location',
+                            tipBody:
+                                'On the Map page you can search for GPS coordinates you may have received from alert messages',
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ]),
+              ],
+            ),
           ),
         ],
       ),

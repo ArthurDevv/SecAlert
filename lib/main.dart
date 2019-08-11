@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:secalert/pages/basePage.dart';
 
 void main() => runApp(SecAlert());
@@ -13,7 +12,6 @@ class SecAlert extends StatelessWidget {
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
-        systemNavigationBarDividerColor: Colors.black54,
       ),
     );
 

@@ -1,9 +1,11 @@
-import 'dart:async';
+// import 'dart:async';
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:secalert/data/locList.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:secalert/pages/basePage.dart';
+import 'package:secalert/utils/navigationHack.dart';
 
 class CurrLocPreviewMap extends StatefulWidget {
   @override
@@ -11,10 +13,10 @@ class CurrLocPreviewMap extends StatefulWidget {
 }
 
 class _CurrLocPreviewMapState extends State<CurrLocPreviewMap> {
-  Completer<GoogleMapController> _controller = Completer();
+  // Completer<GoogleMapController> _controller = Completer();
 
   void _onMapCreated(GoogleMapController controller) {
-    _controller.complete(controller);
+    // _controller.complete(controller);
   }
 
   static final CameraPosition _currLocGPS = CameraPosition(
@@ -42,7 +44,7 @@ class _CurrLocPreviewMapState extends State<CurrLocPreviewMap> {
                 initialCameraPosition: _currLocGPS,
                 onMapCreated: _onMapCreated,
               ),
-              AbsorbPointer(
+              GestureDetector(
                 child: Container(
                   height: 200.0,
                   decoration: BoxDecoration(
@@ -59,6 +61,11 @@ class _CurrLocPreviewMapState extends State<CurrLocPreviewMap> {
                     ),
                   ),
                 ),
+                onTap: () {
+                  BasePage.basePageScaffoldKey.currentState.setState(() {
+                    Navigation.navigationIndex = 2;
+                  });
+                },
               ),
               Positioned(
                 top: 1.0,

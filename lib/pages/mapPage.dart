@@ -1,4 +1,4 @@
-import 'dart:async';
+// import 'dart:async';
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +13,13 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  Completer<GoogleMapController> _controller = Completer();
+  // Completer<GoogleMapController> _controller = Completer();
 
   final Set<Marker> _markers = {};
   final Set<Circle> _circles = {};
 
   void _onMapCreated(GoogleMapController controller) {
-    _controller.complete(controller);
+    // _controller.complete(controller);
     setState(() {
       _bottomPadding = 60.0;
       _markers.add(

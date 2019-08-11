@@ -1,6 +1,8 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:secalert/data/locModel.dart';
+import 'package:secalert/pages/basePage.dart';
+import 'package:secalert/utils/navigationHack.dart';
 import 'package:secalert/widgets/locTile.dart';
 import 'package:secalert/widgets/quickTip.dart';
 import 'package:secalert/widgets/recentLocsCard.dart';
@@ -98,7 +100,11 @@ class _RecentLocListState extends State<RecentLocList> {
                   Text('More locations'),
                 ],
               ),
-              onPressed: () {},
+              onPressed: () {
+                BasePage.basePageScaffoldKey.currentState.setState(() {
+                  Navigation.navigationIndex = 3;
+                });
+              },
             ),
           );
         } else {
@@ -107,6 +113,8 @@ class _RecentLocListState extends State<RecentLocList> {
       },
     );
   }
+
+  Widget snackBar = SnackBar(content: Text('hello'));
 }
 
 class LocListDropdown extends StatefulWidget {

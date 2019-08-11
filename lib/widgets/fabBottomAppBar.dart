@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:secalert/utils/navigationHack.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData});
@@ -34,13 +35,13 @@ class FABBottomAppBar extends StatefulWidget {
 }
 
 class FABBottomAppBarState extends State<FABBottomAppBar> {
-  int _selectedIndex = 0;
+  // int _selectedIndex = 0;
 
   _updateIndex(int index) {
     widget.onTabSelected(index);
-    setState(() {
-      _selectedIndex = index;
-    });
+    // setState(() {
+    //   _selectedIndex = Navigation.navigationIndex;
+    // });
   }
 
   @override
@@ -92,7 +93,9 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
     int index,
     ValueChanged<int> onPressed,
   }) {
-    Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
+    Color color = Navigation.navigationIndex == index
+        ? widget.selectedColor
+        : widget.color;
     return Expanded(
       child: SizedBox(
         height: widget.height,
