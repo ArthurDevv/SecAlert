@@ -1,24 +1,20 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
-class QuickTip extends StatelessWidget {
-  final String tipImage;
-  final String tipHeading;
-  final String tipBody;
-
-  QuickTip({
-    @required this.tipImage,
-    @required this.tipHeading,
-    @required this.tipBody,
-  });
-
+class SendAlertButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(6.0, 0.0, 6.0, 6.0),
       decoration: BoxDecoration(
+        color: Colors.red[900],
+        border: Border.all(width: 1.0, color: Colors.grey[100]),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Card(
+      child: MaterialButton(
+        color: Colors.red[900],
+        elevation: 1.0,
+        // borderRadius: BorderRadius.circular(10.0),
         child: Container(
           height: 70.0,
           child: Row(
@@ -28,9 +24,7 @@ class QuickTip extends StatelessWidget {
                 width: 55.0,
                 height: 55.0,
                 margin: EdgeInsets.only(left: 8.0),
-                child: ClipOval(
-                  child: Image.asset(tipImage),
-                ),
+                child: ClipOval(child: Icon(EvaIcons.paperPlaneOutline)),
               ),
               Flexible(
                 fit: FlexFit.tight,
@@ -42,25 +36,18 @@ class QuickTip extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          tipHeading,
-                          style: Theme.of(context).textTheme.subhead.copyWith(
-                                color: Theme.of(context).brightness ==
-                                        Brightness.light
-                                    ? Colors.red[900]
-                                    : Colors.red,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          'Send Alert',
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.red[900],
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       SizedBox(height: 8.0),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          tipBody,
-                          style: Theme.of(context).textTheme.subtitle,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                        child: Text('Lorem Ipsum',
+                            style: TextStyle(fontSize: 12.0)),
                       ),
                     ],
                   ),
@@ -69,6 +56,7 @@ class QuickTip extends StatelessWidget {
             ],
           ),
         ),
+        onPressed: () {},
       ),
     );
   }

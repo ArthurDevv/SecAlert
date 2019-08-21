@@ -63,7 +63,7 @@ class _CurrLocPreviewMapState extends State<CurrLocPreviewMap> {
                 ),
                 onTap: () {
                   BasePage.basePageScaffoldKey.currentState.setState(() {
-                    Navigation.navigationIndex = 2;
+                    Navigation.currentIndex = 2;
                   });
                 },
               ),

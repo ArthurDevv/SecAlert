@@ -32,7 +32,9 @@ class HelpInfoPage extends StatelessWidget {
                       width: 200.0,
                       height: 200.0,
                       decoration: BoxDecoration(
-                        color: Colors.grey[100],
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.grey[100]
+                            : Colors.grey[700],
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(10.0),
                           topLeft: Radius.circular(10.0),
@@ -53,35 +55,36 @@ class HelpInfoPage extends StatelessWidget {
                           child: RichText(
                             text: TextSpan(
                               text: 'Send Alerts\nquickly\nand\nsafely',
-                              style: TextStyle(
-                                color: Colors.red[900],
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                              ),
+                              style:
+                                  Theme.of(context).textTheme.subhead.copyWith(
+                                        fontSize: 20.0,
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.red[900]
+                                            : Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                               children: <TextSpan>[
                                 TextSpan(
                                   text: '\n\nall it takes is',
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 12.0,
-                                  ),
+                                  style: Theme.of(context).textTheme.subtitle,
                                 ),
                                 TextSpan(
                                   text: '\n3 Presses',
-                                  style: TextStyle(
-                                    color: Colors.red[900],
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16.0,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subhead
+                                      .copyWith(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.red[900]
+                                            : Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
                                 TextSpan(
                                   text: '\nof your power button',
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 12.0,
-                                  ),
+                                  style: Theme.of(context).textTheme.subtitle,
                                 ),
                               ],
                             ),
@@ -159,13 +162,17 @@ class HelpInfoPage extends StatelessWidget {
                         'Please review the information you provide and make sure it is as clear and accurate as possible.'
                         '\n\n- If your location does not have a name or address you can assign one yourself and add enough decriptive information and landmarks to make the place identifiable.'
                         '\n\n- Pin a GPS location on the map for all your locations to help find the place easier.',
-                    style: TextStyle(color: Colors.black),
+                    style: Theme.of(context).textTheme.body1,
                     children: <TextSpan>[
                       TextSpan(
                         text: '\n\nNote:',
-                        style: TextStyle(
-                            color: Colors.red[900],
-                            fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.subhead.copyWith(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Colors.red[900]
+                                  : Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                       TextSpan(
                         text:
@@ -173,7 +180,7 @@ class HelpInfoPage extends StatelessWidget {
                             "\n\n- After you add your first location, set a current location and close the app, pressing the app's icon will only activate or deactivate SecAlert. You can then only access the app's interface by tapping 'Setup' from the persistent notification panel when SecAlert is activated. In the settings menu you can choose to disable the persistent notification which will allow you to open the app directly from tapping on its icon. With this option enabled you can activate or deactivate the app with the switch on the top right corner of the home page."
                             "\n\n- You can send an alert by either tapping on 'Send Alert' from the notification panel or pressing your power button three times in quick succession (each in less than 1.5 secs of the other). A single, long vibration will confirm that your message is being sent, otherwise try again. Alerts can only be sent when the app is activated."
                             "\n\n- Receivers of emergency alerts are advised to follow the right procedure in order not to endanger themselves or the alert sender. Call the local authorities to come to your assistance.",
-                        style: TextStyle(color: Colors.black),
+                        style: Theme.of(context).textTheme.body1,
                       ),
                     ],
                   ),
@@ -193,19 +200,12 @@ class HelpInfoPage extends StatelessWidget {
     return DefaultTabController(
       length: _tabPages.length,
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(
             'Help & Info',
-            style: TextStyle(
-                fontWeight: FontWeight.normal,
-                color: Colors.black54,
-                fontSize: 20.0),
+            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0),
           ),
           elevation: 0.0,
-          backgroundColor: Colors.white,
-          brightness: Brightness.light,
-          iconTheme: IconThemeData(color: Colors.black54),
           actions: <Widget>[
             IconButton(
               icon: Icon(EvaIcons.emailOutline),
@@ -220,12 +220,12 @@ class HelpInfoPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 50.0,
               child: Material(
-                color: Colors.grey[100],
+                color: Theme.of(context).brightness == Brightness.light
+                    ? Colors.grey[100]
+                    : Colors.grey[800],
                 elevation: 0.0,
                 child: TabBar(
                   indicatorColor: Colors.transparent,
-                  labelColor: Colors.red[900],
-                  unselectedLabelColor: Colors.black26,
                   tabs: _tabs,
                 ),
               ),

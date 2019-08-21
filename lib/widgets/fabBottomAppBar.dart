@@ -40,7 +40,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
   _updateIndex(int index) {
     widget.onTabSelected(index);
     // setState(() {
-    //   _selectedIndex = Navigation.navigationIndex;
+    //   _selectedIndex = Navigation.currentIndex;
     // });
   }
 
@@ -78,7 +78,10 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
             Text(
               widget.centerItemText ?? '',
               style: TextStyle(
-                  color: Colors.red[900], fontWeight: FontWeight.bold),
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.red[900]
+                      : Colors.red,
+                  fontWeight: FontWeight.bold),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -93,9 +96,8 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
     int index,
     ValueChanged<int> onPressed,
   }) {
-    Color color = Navigation.navigationIndex == index
-        ? widget.selectedColor
-        : widget.color;
+    Color color =
+        Navigation.currentIndex == index ? widget.selectedColor : widget.color;
     return Expanded(
       child: SizedBox(
         height: widget.height,

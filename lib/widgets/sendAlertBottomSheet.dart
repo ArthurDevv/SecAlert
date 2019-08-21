@@ -16,15 +16,12 @@ class _SendAlertSheetState extends State<SendAlertSheet> {
           children: <Widget>[
             Text(
               'Sending Alert',
-              style: TextStyle(
-                color: Colors.red[900],
-                fontWeight: FontWeight.bold,
-                fontSize: 24.0,
-              ),
+              style:
+                  Theme.of(context).textTheme.subhead.copyWith(fontSize: 24.0),
             ),
             Text(
               'Specify your emergency',
-              style: TextStyle(color: Colors.black54),
+              style: Theme.of(context).textTheme.body1,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -41,7 +38,11 @@ class _SendAlertSheetState extends State<SendAlertSheet> {
                           horizontal: 8.0, vertical: 16.0),
                       child: Column(
                         children: <Widget>[
-                          Image.asset('assets/images/robbery.png', scale: 3.9),
+                          Image.asset(
+                              Theme.of(context).brightness == Brightness.light
+                                  ? 'assets/images/robbery.png'
+                                  : 'assets/images/robberydark.png',
+                              scale: 3.9),
                           SizedBox(height: 8.0),
                           Text(
                             'Robbery\nEmergency',
@@ -67,7 +68,10 @@ class _SendAlertSheetState extends State<SendAlertSheet> {
                         children: <Widget>[
                           Icon(
                             Icons.whatshot,
-                            color: Colors.red[900],
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.red[900]
+                                    : Colors.red,
                             size: 48.0,
                           ),
                           SizedBox(height: 8.0),
@@ -95,7 +99,10 @@ class _SendAlertSheetState extends State<SendAlertSheet> {
                         children: <Widget>[
                           Icon(
                             Icons.favorite,
-                            color: Colors.red[900],
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.red[900]
+                                    : Colors.red,
                             size: 48.0,
                           ),
                           SizedBox(height: 8.0),
@@ -114,7 +121,7 @@ class _SendAlertSheetState extends State<SendAlertSheet> {
             ),
             Text(
               'Alert will be automatically sent after 8 seconds',
-              style: TextStyle(color: Colors.black54),
+              style: Theme.of(context).textTheme.body1,
             ),
             ButtonBar(
               alignment: MainAxisAlignment.center,
@@ -147,7 +154,9 @@ class _SendAlertSheetState extends State<SendAlertSheet> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  color: Colors.red[900],
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.red[900]
+                      : Colors.red,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

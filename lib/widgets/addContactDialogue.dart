@@ -44,7 +44,12 @@ class _AddContactDialogState extends State<AddContactDialog> {
           controller: nameController,
           textCapitalization: TextCapitalization.words,
           decoration: InputDecoration(
-            icon: Icon(EvaIcons.personOutline, color: Colors.red[900]),
+            icon: Icon(
+              EvaIcons.personOutline,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.red[900]
+                  : Colors.red,
+            ),
             labelText: 'Name',
           ),
         ),
@@ -53,7 +58,12 @@ class _AddContactDialogState extends State<AddContactDialog> {
           keyboardType: TextInputType.phone,
           textCapitalization: TextCapitalization.words,
           decoration: InputDecoration(
-            icon: Icon(EvaIcons.phoneOutline, color: Colors.red[900]),
+            icon: Icon(
+              EvaIcons.phoneOutline,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.red[900]
+                  : Colors.red,
+            ),
             labelText: 'Number',
           ),
         ),

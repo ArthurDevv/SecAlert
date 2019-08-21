@@ -9,6 +9,7 @@ import 'package:secalert/widgets/fabBottomAppBar.dart';
 import 'package:secalert/widgets/mainDrawer.dart';
 import 'package:secalert/widgets/sendAlertBottomSheet.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:toast/toast.dart';
 import 'package:vibration/vibration.dart';
 
 class BasePage extends StatefulWidget {
@@ -22,6 +23,8 @@ class BasePage extends StatefulWidget {
 class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
   static final basePageScaffoldKey = GlobalKey<State>();
   _BasePageState({Key key});
+
+  DateTime currentBackPressTime;
 
   final List<Widget> pages = [
     HomePage(),
@@ -46,11 +49,17 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state);
     if (state == AppLifecycleState.resumed) {
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
-          systemNavigationBarIconBrightness: Brightness.dark,
+          systemNavigationBarColor:
+              Theme.of(context).brightness == Brightness.light
+                  ? Colors.white
+                  : Colors.grey[900],
+          systemNavigationBarIconBrightness:
+              Theme.of(context).brightness == Brightness.light
+                  ? Brightness.dark
+                  : Brightness.light,
         ),
       );
     }
@@ -64,8 +73,8 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
   }
 
   @override
@@ -74,12 +83,30 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
       key: basePageScaffoldKey,
       drawer: MainDrawer(),
       backgroundColor: Colors.white,
-      body: pages[Navigation.navigationIndex],
+      body: WillPopScope(
+        child: AnimatedSwitcher(
+          duration: Duration(milliseconds: 100),
+          child: pages[Navigation.currentIndex],
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return SlideTransition(
+              position:
+                  Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero)
+                      .animate(animation),
+              child: child,
+            );
+          },
+        ),
+        onWillPop: onWillPop,
+      ),
       extendBody: true,
       bottomNavigationBar: FABBottomAppBar(
-        centerItemText: fabTitles[Navigation.navigationIndex],
-        color: Colors.black45,
-        selectedColor: Colors.red[900],
+        centerItemText: fabTitles[Navigation.currentIndex],
+        color: Theme.of(context).brightness == Brightness.light
+            ? Colors.black45
+            : Colors.white54,
+        selectedColor: Theme.of(context).brightness == Brightness.light
+            ? Colors.red[900]
+            : Colors.red,
         notchedShape: CircularNotchedRectangle(),
         onTabSelected: onTabTapped,
         items: [
@@ -93,26 +120,29 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
       floatingActionButton: FloatingActionButton(
         elevation: 2.0,
         onPressed: onFabTapped,
-        child: Icon(fabIcons[Navigation.navigationIndex]),
-        backgroundColor: Colors.red[900],
+        child: Icon(fabIcons[Navigation.currentIndex]),
+        backgroundColor: Theme.of(context).brightness == Brightness.light
+            ? Colors.red[900]
+            : Colors.red,
         foregroundColor: Colors.white,
       ),
     );
   }
 
   void onTabTapped(int index) {
+    Navigation.previousIndex = Navigation.currentIndex;
     setState(() {
-      Navigation.navigationIndex = index;
+      Navigation.currentIndex = index;
     });
   }
 
   void onFabTapped() {
-    if (Navigation.navigationIndex == 0) {
+    if (Navigation.currentIndex == 0) {
       _showSendAlertBottomSheet(context);
     }
-    if (Navigation.navigationIndex == 1) {}
-    if (Navigation.navigationIndex == 2) {}
-    if (Navigation.navigationIndex == 3) {
+    if (Navigation.currentIndex == 1) {}
+    if (Navigation.currentIndex == 2) {}
+    if (Navigation.currentIndex == 3) {
       _addLoc();
     }
   }
@@ -134,8 +164,44 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
   }
 
   void _addLoc() {
+    Navigation.previousIndex = Navigation.currentIndex;
     setState(() {
-      Navigation.navigationIndex = 1;
+      Navigation.currentIndex = 1;
     });
+  }
+
+  Future<bool> onWillPop() {
+    DateTime now = DateTime.now();
+
+    if (Navigation.drawerOpen) {
+      Navigator.pop(context);
+      return Future.value(false);
+    }
+    if (Navigation.currentIndex == 0) {
+      if (currentBackPressTime == null ||
+          now.difference(currentBackPressTime) > Duration(seconds: 2)) {
+        currentBackPressTime = now;
+        Toast.show(
+          'Press once again to exit',
+          context,
+          duration: Toast.LENGTH_LONG,
+          gravity: Toast.BOTTOM,
+          backgroundRadius: 10.0,
+          backgroundColor: Colors.grey[100],
+          textColor: Colors.black,
+        );
+        return Future.value(false);
+      }
+    } else {
+      setState(() {
+        if (Navigation.currentIndex != Navigation.previousIndex) {
+          Navigation.currentIndex = Navigation.previousIndex;
+        } else {
+          Navigation.currentIndex = 0;
+        }
+      });
+      return Future.value(false);
+    }
+    return Future.value(true);
   }
 }

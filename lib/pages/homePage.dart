@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:secalert/data/locList.dart';
+import 'package:secalert/pages/userAccountPage.dart';
 import 'package:secalert/widgets/currLocPreviewMap.dart';
 import 'package:secalert/widgets/quickTip.dart';
 
@@ -34,16 +35,23 @@ class _HomePageState extends State<HomePage> {
       final snackBar = SnackBar(
         duration: _snackBarTimeOut,
         elevation: 1.0,
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Theme.of(context).brightness == Brightness.light
+            ? Colors.grey[100]
+            : Colors.grey[800],
         content: !_appStatus
             ? Text('SecAlert has been activated',
                 style:
                     TextStyle(color: Colors.green, fontWeight: FontWeight.bold))
             : Text('SecAlert has been deactivated',
                 style: TextStyle(
-                    color: Colors.red[900], fontWeight: FontWeight.bold)),
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.red[900]
+                        : Colors.red,
+                    fontWeight: FontWeight.bold)),
         action: SnackBarAction(
-          textColor: Colors.black,
+          textColor: Theme.of(context).brightness == Brightness.light
+              ? Colors.black
+              : Colors.white,
           label: 'Okay',
           onPressed: () {
             Scaffold.of(context).hideCurrentSnackBar();
@@ -76,7 +84,11 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          color: _appStatus ? Colors.red[900] : Colors.green,
+          color: _appStatus
+              ? Theme.of(context).brightness == Brightness.light
+                  ? Colors.red[900]
+                  : Colors.red
+              : Colors.green,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -89,7 +101,6 @@ class _HomePageState extends State<HomePage> {
     ));
 
     return Scaffold(
-      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -97,31 +108,26 @@ class _HomePageState extends State<HomePage> {
             pinned: true,
             expandedHeight: kToolbarHeight,
             forceElevated: false,
-            iconTheme: IconThemeData(color: Colors.black54),
+            // iconTheme: IconThemeData(color: Colors.black54),
             elevation: 1.0,
-            brightness: Brightness.light,
             leading: IconButton(
               icon: Icon(EvaIcons.menu2Outline),
               onPressed: () => Scaffold.of(context).openDrawer(),
             ),
             title: Text(
               'Home',
-              style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black54,
-                  fontSize: 20.0),
+              style: Theme.of(context).textTheme.title,
             ),
             actions: <Widget>[
               IconButton(
                 icon: Icon(EvaIcons.personOutline),
-                onPressed: () {},
+                onPressed: onUserAccountPressed,
               ),
               // IconButton(
               //   icon: Image.asset('assets/images/app_icon.png'),
               //   onPressed: () {},
               // ),
             ],
-            backgroundColor: Colors.white,
           ),
           SliverPadding(
             padding: EdgeInsets.only(top: 8.0),
@@ -136,26 +142,22 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Text(
                         'Recent Locations',
-                        style: TextStyle(
-                          color: Colors.red[900],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14.0,
-                        ),
+                        style: Theme.of(context).textTheme.subhead,
                       ),
                       Row(
                         children: <Widget>[
                           Icon(
                             EvaIcons.infoOutline,
-                            color: Colors.black54,
                             size: 12.0,
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black54
+                                    : Colors.white70,
                           ),
                           SizedBox(width: 3.0),
                           Text(
                             'Tap to quickly switch locations',
-                            style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 12.0,
-                            ),
+                            style: Theme.of(context).textTheme.subtitle,
                           ),
                         ],
                       ),
@@ -180,6 +182,15 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void onUserAccountPressed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => UserAccountPage(),
       ),
     );
   }

@@ -60,12 +60,15 @@ class _MapPageState extends State<MapPage> {
 
   void onDeleteButtonPressed() {
     if (_markers.isNotEmpty) {
-      Toast.show('Coordinates deleted', context,
-          duration: Toast.LENGTH_LONG,
-          gravity: Toast.CENTER,
-          backgroundRadius: 10.0,
-          backgroundColor: Colors.white70,
-          textColor: Colors.black);
+      Toast.show(
+        'Coordinates deleted',
+        context,
+        duration: Toast.LENGTH_LONG,
+        gravity: Toast.CENTER,
+        backgroundRadius: 10.0,
+        backgroundColor: Colors.white70,
+        textColor: Colors.black,
+      );
       setState(() {
         _markers.remove(Marker(
           markerId: MarkerId('currLocMarker'),
@@ -90,23 +93,15 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'Map',
-          style: TextStyle(
-              fontWeight: FontWeight.normal,
-              color: Colors.black54,
-              fontSize: 20.0),
         ),
         leading: IconButton(
           icon: Icon(EvaIcons.menu2Outline),
           onPressed: () => Scaffold.of(context).openDrawer(),
         ),
         elevation: 0.0,
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
-        iconTheme: IconThemeData(color: Colors.black54),
         actions: <Widget>[
           IconButton(
             icon: Icon(EvaIcons.searchOutline),
@@ -122,18 +117,17 @@ class _MapPageState extends State<MapPage> {
       ),
       body: Column(
         children: <Widget>[
-          Hero(
-            tag: 'dropDownHero',
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 50.0,
-              child: Material(
-                elevation: 0.0,
-                color: Colors.grey[100],
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: MyDropdownButton(initialLocs),
-                ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 50.0,
+            child: Material(
+              elevation: 0.0,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.grey[100]
+                  : Colors.grey[800],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: MyDropdownButton(initialLocs),
               ),
             ),
           ),
@@ -158,7 +152,10 @@ class _MapPageState extends State<MapPage> {
                           message: 'Change map type',
                           preferBelow: false,
                           child: MaterialButton(
-                            color: Colors.white,
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.white
+                                    : Colors.grey[900],
                             elevation: 3.0,
                             shape: CircleBorder(),
                             child: Padding(
@@ -173,7 +170,10 @@ class _MapPageState extends State<MapPage> {
                           message: 'Navigate to this location',
                           preferBelow: false,
                           child: MaterialButton(
-                            color: Colors.white,
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.white
+                                    : Colors.grey[900],
                             elevation: 3.0,
                             shape: CircleBorder(),
                             child: Padding(
@@ -188,7 +188,10 @@ class _MapPageState extends State<MapPage> {
                           message: "Delete this location's coordinates",
                           preferBelow: false,
                           child: MaterialButton(
-                            color: Colors.white,
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.white
+                                    : Colors.grey[900],
                             elevation: 3.0,
                             shape: CircleBorder(),
                             child: Padding(

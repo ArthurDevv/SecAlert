@@ -23,8 +23,9 @@ class _RecentLocsCardState extends State<RecentLocsCard> {
       width: 150.0,
       // height: 100.0,
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(width: 1.0, color: Colors.grey[100]),
+        color: Theme.of(context).brightness == Brightness.light
+            ? Colors.white
+            : Colors.grey[800],
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
@@ -36,7 +37,6 @@ class _RecentLocsCardState extends State<RecentLocsCard> {
       child: MaterialButton(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        highlightColor: Colors.grey[300],
         // padding: EdgeInsets.zero,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -47,7 +47,6 @@ class _RecentLocsCardState extends State<RecentLocsCard> {
               Center(
                 child: Icon(
                   EvaIcons.pinOutline,
-                  color: Colors.black54,
                   size: 24.0,
                   // color: Colors.black54,
                 ),
@@ -66,10 +65,7 @@ class _RecentLocsCardState extends State<RecentLocsCard> {
                 widget.loc.locLandMark,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 12.0,
-                ),
+                style: Theme.of(context).textTheme.subtitle,
               ),
             ],
           ),

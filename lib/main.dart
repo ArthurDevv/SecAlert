@@ -2,31 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:secalert/pages/basePage.dart';
 
+import 'package:secalert/utils/themeData.dart';
+
 void main() => runApp(SecAlert());
 
 class SecAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.dark.copyWith(
+      SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Colors.white,
-        systemNavigationBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor:
+            Theme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : Colors.grey[900],
+        systemNavigationBarIconBrightness:
+            Theme.of(context).brightness == Brightness.light
+                ? Brightness.dark
+                : Brightness.light,
       ),
     );
 
-    return MaterialApp(
-      title: 'SecAlert',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        primaryColor: Colors.red[900],
-        accentColor: Colors.grey[400],
-        brightness: Brightness.light,
-        cursorColor: Colors.red[900],
-        hintColor: Colors.grey[400],
-      ),
-      home: BasePage(),
-      debugShowCheckedModeBanner: false,
-    );
+    return MyThemeData(myHome: BasePage());
   }
 }

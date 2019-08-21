@@ -12,7 +12,12 @@ class EditContactDialog extends StatelessWidget {
         TextField(
           textCapitalization: TextCapitalization.words,
           decoration: InputDecoration(
-            icon: Icon(EvaIcons.personOutline, color: Colors.red[900]),
+            icon: Icon(
+              EvaIcons.personOutline,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.red[900]
+                  : Colors.red,
+            ),
             labelText: 'Name',
             // hintText: 'Name of contact',
           ),
@@ -21,7 +26,12 @@ class EditContactDialog extends StatelessWidget {
           keyboardType: TextInputType.phone,
           textCapitalization: TextCapitalization.words,
           decoration: InputDecoration(
-            icon: Icon(EvaIcons.phoneOutline, color: Colors.red[900]),
+            icon: Icon(
+              EvaIcons.phoneOutline,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.red[900]
+                  : Colors.red,
+            ),
             labelText: 'Number',
             // hintText: 'Phone numer of contact',
           ),

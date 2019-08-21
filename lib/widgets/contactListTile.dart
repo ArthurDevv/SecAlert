@@ -24,7 +24,9 @@ class _ContactListTileState extends State<ContactListTile> {
       contentPadding: EdgeInsets.only(left: 8.0, right: 8.0),
       dense: true,
       leading: CircleAvatar(
-        backgroundColor: Colors.red[900],
+        backgroundColor: Theme.of(context).brightness == Brightness.light
+            ? Colors.red[900]
+            : Colors.red,
         foregroundColor: Colors.white,
         child: Icon(EvaIcons.personOutline),
       ),

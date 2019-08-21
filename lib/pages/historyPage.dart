@@ -32,23 +32,15 @@ class _HistoryPageState extends State<HistoryPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'History',
-          style: TextStyle(
-              fontWeight: FontWeight.normal,
-              color: Colors.black54,
-              fontSize: 20.0),
         ),
         leading: IconButton(
           icon: Icon(EvaIcons.menu2Outline),
           onPressed: () => Scaffold.of(context).openDrawer(),
         ),
         elevation: 0.0,
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
-        iconTheme: IconThemeData(color: Colors.black54),
         actions: <Widget>[
           IconButton(
             icon: Icon(EvaIcons.searchOutline),
@@ -67,13 +59,13 @@ class _HistoryPageState extends State<HistoryPage>
             width: MediaQuery.of(context).size.width,
             height: 50.0,
             child: Material(
-              color: Colors.grey[100],
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.grey[100]
+                  : Colors.grey[800],
               elevation: 0.0,
               child: TabBar(
                 controller: _tabController,
                 indicatorColor: Colors.transparent,
-                labelColor: Colors.red[900],
-                unselectedLabelColor: Colors.black26,
                 tabs: _tabs,
               ),
             ),
@@ -98,57 +90,97 @@ class _HistoryPageState extends State<HistoryPage>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
+                            margin: EdgeInsets.symmetric(horizontal: 6.0),
                             child: ExpansionTile(
                               initiallyExpanded: true,
                               title: Text(
                                 'Alerts Sent',
-                                style: TextStyle(
-                                  color: Colors.red[900],
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subhead
+                                    .copyWith(
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? Colors.red[900]
+                                          : Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                               children: <Widget>[
                                 ListTile(
-                                  leading: Icon(EvaIcons.paperPlaneOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.paperPlaneOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Robbery alert sent from Home on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.paperPlaneOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.paperPlaneOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Robbery alert sent from Home on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.paperPlaneOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.paperPlaneOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Robbery alert sent from Home on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.paperPlaneOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.paperPlaneOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Robbery alert sent from Home on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.paperPlaneOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.paperPlaneOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Robbery alert sent from Home on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.paperPlaneOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.paperPlaneOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Robbery alert sent from Home on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.paperPlaneOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.paperPlaneOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Robbery alert sent from Home on 02/08/19 at 12:15'),
                                 ),
@@ -163,56 +195,96 @@ class _HistoryPageState extends State<HistoryPage>
                                 "When you're trying to send an alert a countdown popup will show, you can cancel your alert or specify its type here",
                           ),
                           Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
+                            margin: EdgeInsets.symmetric(horizontal: 6.0),
                             child: ExpansionTile(
                               title: Text(
                                 'Alerts Recieved',
-                                style: TextStyle(
-                                  color: Colors.red[900],
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subhead
+                                    .copyWith(
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? Colors.red[900]
+                                          : Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                               children: <Widget>[
                                 ListTile(
-                                  leading: Icon(EvaIcons.messageSquareOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.messageSquareOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.messageSquareOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.messageSquareOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.messageSquareOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.messageSquareOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.messageSquareOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.messageSquareOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.messageSquareOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.messageSquareOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.messageSquareOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.messageSquareOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
                                 ),
                                 ListTile(
-                                  leading: Icon(EvaIcons.messageSquareOutline,
-                                      color: Colors.red[900]),
+                                  leading: Icon(
+                                    EvaIcons.messageSquareOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   title: Text(
                                       'Fire alert recieved from John Doe on 02/08/19 at 12:15'),
                                 ),

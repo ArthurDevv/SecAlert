@@ -92,7 +92,15 @@ class _RecentLocListState extends State<RecentLocList> {
                     height: 50.0,
                     width: 50.0,
                     decoration: BoxDecoration(
-                        border: Border.all(width: 2.0, color: Colors.red[900]),
+                        border: Border.all(
+                          width: 2.0,
+                          color: Theme.of(BasePage
+                                          .basePageScaffoldKey.currentContext)
+                                      .brightness ==
+                                  Brightness.light
+                              ? Colors.red[900]
+                              : Colors.red,
+                        ),
                         shape: BoxShape.circle),
                     child: Icon(EvaIcons.arrowForwardOutline),
                   ),
@@ -101,8 +109,9 @@ class _RecentLocListState extends State<RecentLocList> {
                 ],
               ),
               onPressed: () {
+                Navigation.previousIndex = Navigation.currentIndex;
                 BasePage.basePageScaffoldKey.currentState.setState(() {
-                  Navigation.navigationIndex = 3;
+                  Navigation.currentIndex = 3;
                 });
               },
             ),
@@ -168,7 +177,11 @@ class _MyDropdownButtonState extends State<MyDropdownButton> {
             children: <Widget>[
               Icon(
                 EvaIcons.pinOutline,
-                color: Colors.red[900],
+                color: Theme.of(BasePage.basePageScaffoldKey.currentContext)
+                            .brightness ==
+                        Brightness.light
+                    ? Colors.red[900]
+                    : Colors.red,
                 size: 20.0,
               ),
               SizedBox(width: 16.0),

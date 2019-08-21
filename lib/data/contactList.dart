@@ -29,6 +29,7 @@ class _SetupContactListState extends State<SetupContactList> {
 
   ListView _buildList(context) {
     return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       itemCount: initialContacts.length,

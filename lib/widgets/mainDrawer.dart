@@ -3,8 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:secalert/pages/aboutPage.dart';
 import 'package:secalert/pages/helpInfoPage.dart';
 import 'package:secalert/pages/schedulePage.dart';
+import 'package:secalert/pages/settingsPage.dart';
+import 'package:secalert/utils/navigationHack.dart';
+import 'package:secalert/widgets/riskyAreaDialog.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
+  @override
+  _MainDrawerState createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -26,7 +34,9 @@ class MainDrawer extends StatelessWidget {
                         topRight: Radius.circular(10.0),
                       ),
                     ),
-                    color: Colors.red[900],
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.red[900]
+                        : Colors.red,
                   ),
                 ),
               ),
@@ -67,22 +77,40 @@ class MainDrawer extends StatelessWidget {
                 child: Column(
               children: <Widget>[
                 InkWell(
-                  onTap: () {},
                   child: ListTile(
                     title: Text(
                       'Risky Area',
                       style: TextStyle(
-                          color: Colors.red[900], fontWeight: FontWeight.bold),
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? Colors.red[900]
+                                  : Colors.red,
+                          fontWeight: FontWeight.bold),
                     ),
-                    leading: Icon(EvaIcons.alertTriangleOutline,
-                        color: Colors.red[900]),
+                    leading: Icon(
+                      EvaIcons.alertTriangleOutline,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.red[900]
+                          : Colors.red,
+                    ),
                   ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) => RiskyAreaDialog());
+                  },
                 ),
                 InkWell(
                   child: ListTile(
                     title: Text('Schedule'),
-                    leading:
-                        Icon(EvaIcons.calendarOutline, color: Colors.black),
+                    leading: Icon(
+                      EvaIcons.calendarOutline,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
+                    ),
                   ),
                   onTap: () {
                     Navigator.pop(context);
@@ -95,18 +123,34 @@ class MainDrawer extends StatelessWidget {
                   },
                 ),
                 InkWell(
-                  onTap: () {},
                   child: ListTile(
                     title: Text('Settings'),
-                    leading:
-                        Icon(EvaIcons.settings2Outline, color: Colors.black),
+                    leading: Icon(
+                      EvaIcons.settings2Outline,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
+                    ),
                   ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SettingsPage(),
+                      ),
+                    );
+                  },
                 ),
                 InkWell(
                   child: ListTile(
                     title: Text('Help & Info'),
-                    leading: Icon(EvaIcons.questionMarkCircleOutline,
-                        color: Colors.black),
+                    leading: Icon(
+                      EvaIcons.questionMarkCircleOutline,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
+                    ),
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.push(
@@ -121,7 +165,12 @@ class MainDrawer extends StatelessWidget {
                 InkWell(
                   child: ListTile(
                     title: Text('About'),
-                    leading: Icon(EvaIcons.infoOutline, color: Colors.black),
+                    leading: Icon(
+                      EvaIcons.infoOutline,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
+                    ),
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.push(
@@ -139,5 +188,17 @@ class MainDrawer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    Navigation.drawerOpen = true;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    Navigation.drawerOpen = false;
+    super.dispose();
   }
 }

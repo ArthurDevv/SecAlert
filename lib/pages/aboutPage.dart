@@ -16,7 +16,6 @@ class AboutPage extends StatelessWidget {
     );
 
     return Scaffold(
-      backgroundColor: Colors.white,
       body: CustomScrollView(
         // controller: _hideWidgetsController,
         slivers: <Widget>[
@@ -25,17 +24,10 @@ class AboutPage extends StatelessWidget {
             pinned: true,
             expandedHeight: kToolbarHeight,
             forceElevated: false,
-            iconTheme: IconThemeData(color: Colors.black54),
             elevation: 1.0,
-            brightness: Brightness.light,
             title: Text(
               'About',
-              style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black54,
-                  fontSize: 20.0),
             ),
-            backgroundColor: Colors.white,
           ),
           SliverPadding(
             padding: EdgeInsets.only(top: 8.0),
@@ -56,7 +48,10 @@ class AboutPage extends StatelessWidget {
                         Text(
                           'SecAlert version 1.0.0',
                           style: TextStyle(
-                              color: Colors.red[900],
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Colors.red[900]
+                                  : Colors.red,
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold),
                         ),
@@ -68,8 +63,12 @@ class AboutPage extends StatelessWidget {
                         SizedBox(height: 8.0),
                         Text(
                           'Terms & Conditions',
-                          style:
-                              TextStyle(color: Colors.red[900], fontSize: 13.0),
+                          style: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Colors.red[900]
+                                  : Colors.red,
+                              fontSize: 13.0),
                         ),
                         SizedBox(height: 32.0),
                         Row(
@@ -93,7 +92,12 @@ class AboutPage extends StatelessWidget {
                         SizedBox(height: 8.0),
                         Text(
                           '@SecAlertApp',
-                          style: TextStyle(color: Colors.black, fontSize: 13.0),
+                          style: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Colors.black
+                                  : Colors.white,
+                              fontSize: 13.0),
                         ),
                         SizedBox(height: 32.0),
                         Row(
@@ -107,8 +111,13 @@ class AboutPage extends StatelessWidget {
                               ),
                               child: (Column(
                                 children: <Widget>[
-                                  Icon(EvaIcons.swapOutline,
-                                      color: Colors.red[900]),
+                                  Icon(
+                                    EvaIcons.swapOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   SizedBox(height: 6.0),
                                   Text('Changelog'),
                                 ],
@@ -124,8 +133,13 @@ class AboutPage extends StatelessWidget {
                               ),
                               child: (Column(
                                 children: <Widget>[
-                                  Icon(EvaIcons.shareOutline,
-                                      color: Colors.red[900]),
+                                  Icon(
+                                    EvaIcons.shareOutline,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.red[900]
+                                        : Colors.red,
+                                  ),
                                   SizedBox(height: 6.0),
                                   Text('Share'),
                                 ],
@@ -136,10 +150,13 @@ class AboutPage extends StatelessWidget {
                         ),
                         SizedBox(height: 40.0),
                         GestureDetector(
-                          child: Text(
-                            'com.arthurdev.secalert',
-                            style:
-                                TextStyle(color: Colors.grey, fontSize: 11.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'com.arthurdev.secalert',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 11.0),
+                            ),
                           ),
                           onLongPress: () {
                             Toast.show('41-BA/E/IH_54-BE/J/FB', context,
