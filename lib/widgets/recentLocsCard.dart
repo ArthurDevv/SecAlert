@@ -27,6 +27,11 @@ class _RecentLocsCardState extends State<RecentLocsCard> {
             ? Colors.white
             : Colors.grey[800],
         borderRadius: BorderRadius.circular(10),
+        // border: Border.all(
+        //   color: Theme.of(context).brightness == Brightness.light
+        //       ? Colors.grey[100]
+        //       : Colors.transparent,
+        // ),
         boxShadow: [
           BoxShadow(
               color: Colors.black26,

@@ -17,6 +17,11 @@ class QuickTip extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(6.0, 0.0, 6.0, 6.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
+        // border: Border.all(
+        //   color: Theme.of(context).brightness == Brightness.light
+        //       ? Colors.grey[100]
+        //       : Colors.transparent,
+        // ),
       ),
       child: Card(
         child: Container(

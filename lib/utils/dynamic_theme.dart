@@ -50,14 +50,10 @@ class DynamicThemeState extends State<DynamicTheme> {
       if (mounted) {
         setState(() {
           SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-            systemNavigationBarColor:
-                Theme.of(context).brightness == Brightness.dark
-                    ? Colors.white
-                    : Colors.grey[900],
+            statusBarColor: Colors.transparent,
+            systemNavigationBarColor: dark ? Colors.grey[900] : Colors.white,
             systemNavigationBarIconBrightness:
-                Theme.of(context).brightness == Brightness.dark
-                    ? Brightness.dark
-                    : Brightness.light,
+                dark ? Brightness.light : Brightness.dark,
           ));
         });
       }

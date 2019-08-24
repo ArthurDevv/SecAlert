@@ -20,6 +20,9 @@ class MyThemeData extends StatelessWidget {
               cursorColor: Theme.of(context).brightness == Brightness.light
                   ? Colors.red[900]
                   : Colors.red,
+              errorColor: Theme.of(context).brightness == Brightness.light
+                  ? Colors.red[900]
+                  : Colors.red,
               appBarTheme: AppBarTheme(
                 color: brightness == Brightness.light ? Colors.white : null,
                 brightness: brightness == Brightness.light

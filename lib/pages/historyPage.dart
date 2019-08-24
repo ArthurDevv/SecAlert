@@ -73,6 +73,7 @@ class _HistoryPageState extends State<HistoryPage>
           Flexible(
             fit: FlexFit.tight,
             child: TabBarView(
+              physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
               children: [
                 Container(

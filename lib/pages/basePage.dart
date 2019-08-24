@@ -81,21 +81,23 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       key: basePageScaffoldKey,
+      resizeToAvoidBottomInset: false,
       drawer: MainDrawer(),
-      backgroundColor: Colors.white,
       body: WillPopScope(
         child: AnimatedSwitcher(
-          duration: Duration(milliseconds: 100),
+          duration: Duration(milliseconds: 250),
           child: pages[Navigation.currentIndex],
           transitionBuilder: (Widget child, Animation<double> animation) {
-            return SlideTransition(
-              position:
-                  Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero)
-                      .animate(animation),
+            return FadeTransition(
+              opacity: animation,
               child: child,
             );
           },
         ),
+        // child: IndexedStack(
+        //   index: Navigation.currentIndex,
+        //   children: pages,
+        // ),
         onWillPop: onWillPop,
       ),
       extendBody: true,

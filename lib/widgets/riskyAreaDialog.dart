@@ -36,8 +36,8 @@ class _RiskyAreaDialogState extends State<RiskyAreaDialog> {
                 '\n\nWhen Risky Area is activated SecAlert tracks your location every 5 minutes and in the event of an emergency'
                 ' alerts will be sent directly to your most recently selected contacts, no countdown popup will be shown.'
                 '\n\nThese contacts will receive an alert message with your last tracked GPS coordinates.'
-                '\n\nDue to the frequency of the GPS tracking in thhis mode, which is battery intensive, and the direct sending of alerts,'
-                'it is advised that you only activate this mode when absolutely necessary.',
+                '\n\nDue to the frequency of the GPS tracking in this mode, which is battery intensive, and the direct sending of alerts,'
+                ' it is advised that you only activate this mode when absolutely necessary.',
               ),
               ButtonBar(
                 alignment: MainAxisAlignment.end,

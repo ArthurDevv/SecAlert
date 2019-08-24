@@ -168,7 +168,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       color: Theme.of(context).brightness == Brightness.light
                           ? Colors.grey[100]
                           : Colors.grey[800],
-                      duration: Duration(milliseconds: 400),
+                      duration: Duration(milliseconds: 250),
                       height: appSchedule ? 100.0 : 0,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40.0),

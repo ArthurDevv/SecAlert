@@ -20,6 +20,23 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
   final locNameKey = GlobalKey<FormFieldState>();
   final locLandmarkKey = GlobalKey<FormFieldState>();
 
+  FocusNode landmarkFocusNode;
+  FocusNode nameFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    landmarkFocusNode = FocusNode();
+    nameFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    landmarkFocusNode.dispose();
+    nameFocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +66,9 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
         child: Theme(
           data: Theme.of(context).copyWith(
             primaryColor: Theme.of(context).brightness == Brightness.light
+                ? Colors.red[900]
+                : Colors.red,
+            errorColor: Theme.of(context).brightness == Brightness.light
                 ? Colors.red[900]
                 : Colors.red,
           ),
@@ -99,6 +119,7 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
                 title: Text('What is the name or address of the location?'),
                 content: TextFormField(
                   key: locNameKey,
+                  focusNode: nameFocusNode,
                   validator: (value) =>
                       value.isEmpty ? 'Please provide a name or address' : null,
                   // controller: locNameController,
@@ -127,6 +148,7 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
                       value.isEmpty ? 'Please provide a landmark' : null,
                   // controller: locLandmarkController,
                   textCapitalization: TextCapitalization.words,
+                  focusNode: landmarkFocusNode,
                   maxLines: 2,
                   maxLength: 120,
                   decoration: InputDecoration(
@@ -369,6 +391,7 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
         locNameKey.currentState.save();
         setState(() {
           _currentStep += 1;
+          FocusScope.of(context).requestFocus(landmarkFocusNode);
         });
       }
     }
@@ -378,6 +401,12 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
     if (_currentStep != 4) {
       setState(() {
         _currentStep -= 1;
+        if (_currentStep == 0) {
+          FocusScope.of(context).requestFocus(nameFocusNode);
+        }
+        if (_currentStep == 1) {
+          FocusScope.of(context).requestFocus(landmarkFocusNode);
+        }
       });
     } else {
       setState(() {
