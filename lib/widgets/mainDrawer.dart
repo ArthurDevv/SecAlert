@@ -4,8 +4,9 @@ import 'package:secalert/pages/aboutPage.dart';
 import 'package:secalert/pages/helpInfoPage.dart';
 import 'package:secalert/pages/schedulePage.dart';
 import 'package:secalert/pages/settingsPage.dart';
+import 'package:secalert/pages/userAccountPage.dart';
 import 'package:secalert/utils/navigationHack.dart';
-import 'package:secalert/widgets/riskyAreaDialog.dart';
+import 'package:secalert/dialogs/riskyAreaDialog.dart';
 
 class MainDrawer extends StatefulWidget {
   @override
@@ -13,6 +14,9 @@ class MainDrawer extends StatefulWidget {
 }
 
 class _MainDrawerState extends State<MainDrawer> {
+  Widget thisRoute;
+  int tapIndex;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -43,30 +47,37 @@ class _MainDrawerState extends State<MainDrawer> {
               Theme(
                 data: Theme.of(context)
                     .copyWith(dividerColor: Colors.transparent),
-                child: UserAccountsDrawerHeader(
-                  accountName: Text(
-                    'Delords Arthur',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  accountEmail: Text(
-                    'arthurdelords@gmail.com',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  currentAccountPicture: CircleAvatar(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage('assets/images/avi.jpg'),
+                child: GestureDetector(
+                  child: UserAccountsDrawerHeader(
+                    accountName: Text(
+                      'Delords Arthur',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    accountEmail: Text(
+                      'arthurdelords@gmail.com',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    currentAccountPicture: CircleAvatar(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage('assets/images/avi.jpg'),
+                          ),
                         ),
                       ),
                     ),
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border.all(style: BorderStyle.none),
+                    ),
                   ),
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(style: BorderStyle.none),
-                  ),
+                  onTap: () {
+                    thisRoute = UserAccountPage();
+                    tapIndex = 1;
+                    openRoute();
+                  },
                 ),
               ),
             ],
@@ -97,7 +108,7 @@ class _MainDrawerState extends State<MainDrawer> {
                   onTap: () {
                     Navigator.pop(context);
                     showDialog(
-                        barrierDismissible: false,
+                        barrierDismissible: true,
                         context: context,
                         builder: (BuildContext context) => RiskyAreaDialog());
                   },
@@ -113,13 +124,9 @@ class _MainDrawerState extends State<MainDrawer> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SchedulePage(),
-                      ),
-                    );
+                    thisRoute = SchedulePage();
+                    tapIndex = 2;
+                    openRoute();
                   },
                 ),
                 InkWell(
@@ -133,13 +140,9 @@ class _MainDrawerState extends State<MainDrawer> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SettingsPage(),
-                      ),
-                    );
+                    thisRoute = SettingsPage();
+                    tapIndex = 3;
+                    openRoute();
                   },
                 ),
                 InkWell(
@@ -152,13 +155,9 @@ class _MainDrawerState extends State<MainDrawer> {
                           : Colors.white,
                     ),
                     onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HelpInfoPage(),
-                        ),
-                      );
+                      thisRoute = HelpInfoPage();
+                      tapIndex = 4;
+                      openRoute();
                     },
                   ),
                 ),
@@ -172,13 +171,9 @@ class _MainDrawerState extends State<MainDrawer> {
                           : Colors.white,
                     ),
                     onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AboutPage(),
-                        ),
-                      );
+                      thisRoute = AboutPage();
+                      tapIndex = 5;
+                      openRoute();
                     },
                   ),
                 )
@@ -188,6 +183,29 @@ class _MainDrawerState extends State<MainDrawer> {
         ],
       ),
     );
+  }
+
+  void openRoute() {
+    Navigator.pop(context);
+    if (tapIndex != Navigation.drawerIndex) {
+      if (Navigation.drawerIndex != 0) {
+        print('pushReplacement');
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => thisRoute,
+          ),
+        );
+      } else {
+        print('push');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => thisRoute,
+          ),
+        );
+      }
+    }
   }
 
   @override

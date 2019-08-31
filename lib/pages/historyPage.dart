@@ -37,7 +37,7 @@ class _HistoryPageState extends State<HistoryPage>
           'History',
         ),
         leading: IconButton(
-          icon: Icon(EvaIcons.menu2Outline),
+          icon: Icon(Icons.menu),
           onPressed: () => Scaffold.of(context).openDrawer(),
         ),
         elevation: 0.0,
@@ -195,6 +195,7 @@ class _HistoryPageState extends State<HistoryPage>
                             tipBody:
                                 "When you're trying to send an alert a countdown popup will show, you can cancel your alert or specify its type here",
                           ),
+                          SizedBox(height: 2.0),
                           Card(
                             margin: EdgeInsets.symmetric(horizontal: 6.0),
                             child: ExpansionTile(

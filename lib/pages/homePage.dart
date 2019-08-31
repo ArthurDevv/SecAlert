@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
             // iconTheme: IconThemeData(color: Colors.black54),
             elevation: 1.0,
             leading: IconButton(
-              icon: Icon(EvaIcons.menu2Outline),
+              icon: Icon(Icons.menu),
               onPressed: () => Scaffold.of(context).openDrawer(),
             ),
             title: Text(

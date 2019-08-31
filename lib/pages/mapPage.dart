@@ -98,7 +98,7 @@ class _MapPageState extends State<MapPage> {
           'Map',
         ),
         leading: IconButton(
-          icon: Icon(EvaIcons.menu2Outline),
+          icon: Icon(Icons.menu),
           onPressed: () => Scaffold.of(context).openDrawer(),
         ),
         elevation: 0.0,

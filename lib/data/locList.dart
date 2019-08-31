@@ -105,7 +105,7 @@ class _RecentLocListState extends State<RecentLocList> {
                     child: Icon(EvaIcons.arrowForwardOutline),
                   ),
                   SizedBox(height: 8.0),
-                  Text('More locations'),
+                  Text('All locations (${widget.locations.length})'),
                 ],
               ),
               onPressed: () {

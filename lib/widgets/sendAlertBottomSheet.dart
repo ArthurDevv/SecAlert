@@ -16,8 +16,12 @@ class _SendAlertSheetState extends State<SendAlertSheet> {
           children: <Widget>[
             Text(
               'Sending Alert',
-              style:
-                  Theme.of(context).textTheme.subhead.copyWith(fontSize: 24.0),
+              style: Theme.of(context).textTheme.subhead.copyWith(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.red[900]
+                      : Colors.red),
             ),
             Text(
               'Specify your emergency',

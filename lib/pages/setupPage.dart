@@ -1,11 +1,11 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:secalert/dialogs/editContactDialog.dart';
 import 'package:secalert/pages/basePage.dart';
 import 'package:secalert/utils/navigationHack.dart';
 import 'package:flutter/rendering.dart';
 import 'package:secalert/data/contactList.dart';
 import 'package:secalert/data/contactModel.dart';
-import 'package:secalert/widgets/addContactDialogue.dart';
 import 'package:secalert/widgets/quickTip.dart';
 
 class SetupPage extends StatefulWidget {
@@ -45,7 +45,7 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
           'Setup Location',
         ),
         leading: IconButton(
-          icon: Icon(EvaIcons.menu2Outline),
+          icon: Icon(Icons.menu),
           onPressed: () => Scaffold.of(context).openDrawer(),
         ),
         elevation: 0.0,
@@ -212,7 +212,7 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
                       Row(
                         children: <Widget>[
                           IconButton(
-                            icon: Icon(EvaIcons.shieldOutline),
+                            icon: Icon(Icons.security),
                             tooltip: 'Add a police station near the location',
                             onPressed: () {},
                           ),
@@ -346,9 +346,10 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
 
   Future _manuallyAddCon() async {
     Contact newCon = await showDialog(
-        barrierDismissible: false,
+        barrierDismissible: true,
         context: context,
-        builder: (BuildContext context) => AddContactDialog());
+        builder: (BuildContext context) =>
+            EditContactDialog(title: 'Manually add contact'));
     if (newCon != null) {
       initialContacts.add(newCon);
     }

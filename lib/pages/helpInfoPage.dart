@@ -1,9 +1,22 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:secalert/utils/navigationHack.dart';
+import 'package:secalert/widgets/mainDrawer.dart';
 import 'package:secalert/widgets/quickTip.dart';
 
-class HelpInfoPage extends StatelessWidget {
+class HelpInfoPage extends StatefulWidget {
+  @override
+  _HelpInfoPageState createState() => _HelpInfoPageState();
+}
+
+class _HelpInfoPageState extends State<HelpInfoPage> {
+  @override
+  void initState() {
+    Navigation.drawerIndex = 4;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -132,6 +145,13 @@ class HelpInfoPage extends StatelessWidget {
               ),
               SizedBox(height: 8.0),
               QuickTip(
+                tipImage: 'assets/images/health_information.jpg',
+                tipHeading: 'Set up your personal emergency info',
+                tipBody:
+                    'The information you provide will be sent to your contacts when you send a medical emergency alert',
+              ),
+              SizedBox(height: 8.0),
+              QuickTip(
                 tipImage: 'assets/images/quicktip_police.png',
                 tipHeading: 'Received Alerts, Police contacts',
                 tipBody:
@@ -197,44 +217,53 @@ class HelpInfoPage extends StatelessWidget {
       Tab(text: 'More Info'),
     ];
 
-    return DefaultTabController(
-      length: _tabPages.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Help & Info',
-            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0),
+    return WillPopScope(
+      child: DefaultTabController(
+        length: _tabPages.length,
+        child: Scaffold(
+          drawer: MainDrawer(),
+          appBar: AppBar(
+            title: Text(
+              'Help & Info',
+              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0),
+            ),
+            elevation: 0.0,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(EvaIcons.emailOutline),
+                onPressed: () {},
+              )
+            ],
+            // bottom:
           ),
-          elevation: 0.0,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(EvaIcons.emailOutline),
-              onPressed: () {},
-            )
-          ],
-          // bottom:
-        ),
-        body: Column(
-          children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 50.0,
-              child: Material(
-                color: Theme.of(context).brightness == Brightness.light
-                    ? Colors.grey[100]
-                    : Colors.grey[800],
-                elevation: 0.0,
-                child: TabBar(
-                  indicatorColor: Colors.transparent,
-                  tabs: _tabs,
+          body: Column(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 50.0,
+                child: Material(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey[100]
+                      : Colors.grey[800],
+                  elevation: 0.0,
+                  child: TabBar(
+                    indicatorColor: Colors.transparent,
+                    tabs: _tabs,
+                  ),
                 ),
               ),
-            ),
-            Flexible(
-                fit: FlexFit.tight, child: TabBarView(children: _tabPages)),
-          ],
+              Flexible(
+                  fit: FlexFit.tight, child: TabBarView(children: _tabPages)),
+            ],
+          ),
         ),
       ),
+      onWillPop: onWillPop,
     );
+  }
+
+  Future<bool> onWillPop() {
+    Navigation.drawerIndex = 0;
+    return Future.value(true);
   }
 }
