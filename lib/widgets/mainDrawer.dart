@@ -189,7 +189,6 @@ class _MainDrawerState extends State<MainDrawer> {
     Navigator.pop(context);
     if (tapIndex != Navigation.drawerIndex) {
       if (Navigation.drawerIndex != 0) {
-        print('pushReplacement');
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -197,7 +196,6 @@ class _MainDrawerState extends State<MainDrawer> {
           ),
         );
       } else {
-        print('push');
         Navigator.push(
           context,
           MaterialPageRoute(

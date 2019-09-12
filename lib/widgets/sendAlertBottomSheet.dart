@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:secalert/custom/custom_icons.dart';
 
 class SendAlertSheet extends StatefulWidget {
   SendAlertSheet({Key key}) : super(key: key);
@@ -42,11 +43,19 @@ class _SendAlertSheetState extends State<SendAlertSheet> {
                           horizontal: 8.0, vertical: 16.0),
                       child: Column(
                         children: <Widget>[
-                          Image.asset(
-                              Theme.of(context).brightness == Brightness.light
-                                  ? 'assets/images/robbery.png'
-                                  : 'assets/images/robberydark.png',
-                              scale: 3.9),
+                          // Image.asset(
+                          //     Theme.of(context).brightness == Brightness.light
+                          //         ? 'assets/images/robbery.png'
+                          //         : 'assets/images/robberydark.png',
+                          //     scale: 3.9),
+                          Icon(
+                            CustomIcons.mask,
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.red[900]
+                                    : Colors.red,
+                            size: 48.0,
+                          ),
                           SizedBox(height: 8.0),
                           Text(
                             'Robbery\nEmergency',

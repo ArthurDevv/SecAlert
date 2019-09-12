@@ -412,6 +412,7 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
     } else {
       setState(() {
         _currentStep = 0;
+         FocusScope.of(context).requestFocus(nameFocusNode);
       });
     }
   }

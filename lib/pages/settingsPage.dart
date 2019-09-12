@@ -77,6 +77,24 @@ class _SettingsPageState extends State<SettingsPage> {
                 forceElevated: false,
                 elevation: 1.0,
                 title: Text('Settings'),
+                actions: <Widget>[
+                  PopupMenuButton<String>(
+                    padding: EdgeInsets.zero,
+                    elevation: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: Icon(Icons.settings_backup_restore),
+                    ),
+                    // offset: Offset(0, 100),
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: 'Restore default settings',
+                        child: Text('Restore default settings'),
+                      ),
+                    ],
+                    onSelected: (value) {},
+                  ),
+                ],
               ),
               SliverPadding(
                 padding: EdgeInsets.only(top: 8.0),
@@ -174,8 +192,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         color: Theme.of(context).brightness == Brightness.light
                             ? Colors.grey[100]
                             : Colors.grey[800],
-                        duration: Duration(milliseconds: 250),
-                        height: appSchedule ? 100.0 : 0,
+                        duration: Duration(milliseconds: 300),
+                        height: appSchedule ? 90.0 : 0.0,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 40.0),
                           child: FittedBox(

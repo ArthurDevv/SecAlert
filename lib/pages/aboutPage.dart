@@ -46,7 +46,7 @@ class _AboutPageState extends State<AboutPage> {
                         children: <Widget>[
                           SizedBox(height: 26.0),
                           Image(
-                            image: AssetImage('assets/images/app_icon_hd.png'),
+                            image: AssetImage('assets/images/app_icon.png'),
                             width: 150.0,
                             height: 150.0,
                           ),

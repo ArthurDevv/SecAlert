@@ -184,7 +184,7 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
           now.difference(currentBackPressTime) > Duration(seconds: 2)) {
         currentBackPressTime = now;
         Toast.show(
-          'Press once again to exit',
+          'Repeat to exit',
           context,
           duration: Toast.LENGTH_LONG,
           gravity: Toast.BOTTOM,
