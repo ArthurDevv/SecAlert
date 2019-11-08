@@ -116,7 +116,10 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
                 isActive: _currentStep >= 0,
                 // state:
                 //     _currentStep >= 0 ? StepState.complete : StepState.disabled,
-                title: Text('What is the name or address of the location?'),
+                title: Text(
+                  'What is the name or address of the location?',
+                  maxLines: 2,
+                ),
                 content: TextFormField(
                   key: locNameKey,
                   focusNode: nameFocusNode,
@@ -412,7 +415,7 @@ class _SetupPageState extends State<SetupPage> with TickerProviderStateMixin {
     } else {
       setState(() {
         _currentStep = 0;
-         FocusScope.of(context).requestFocus(nameFocusNode);
+        FocusScope.of(context).requestFocus(nameFocusNode);
       });
     }
   }

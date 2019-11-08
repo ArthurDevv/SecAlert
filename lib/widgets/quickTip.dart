@@ -58,13 +58,15 @@ class QuickTip extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 8.0),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          tipBody,
-                          style: Theme.of(context).textTheme.subtitle,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                      Flexible(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            tipBody,
+                            style: Theme.of(context).textTheme.subtitle,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ],

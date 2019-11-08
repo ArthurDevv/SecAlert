@@ -59,47 +59,51 @@ class _HelpInfoPageState extends State<HelpInfoPage> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: Container(
-                        height: 200.0,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: RichText(
-                            text: TextSpan(
-                              text: 'Send Alerts\nquickly\nand\nsafely',
-                              style:
-                                  Theme.of(context).textTheme.subhead.copyWith(
-                                        fontSize: 20.0,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? Colors.red[900]
-                                            : Colors.red,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: '\n\nall it takes is',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                                TextSpan(
-                                  text: '\n3 Presses',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subhead
-                                      .copyWith(
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? Colors.red[900]
-                                            : Colors.red,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                                TextSpan(
-                                  text: '\nof your power button',
-                                  style: Theme.of(context).textTheme.subtitle,
-                                ),
-                              ],
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Container(
+                          height: 200.0,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: RichText(
+                              text: TextSpan(
+                                text: 'Send Alerts\nquickly\nand\nsafely',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subhead
+                                    .copyWith(
+                                      fontSize: 20.0,
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? Colors.red[900]
+                                          : Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: '\n\nall it takes is',
+                                    style: Theme.of(context).textTheme.subtitle,
+                                  ),
+                                  TextSpan(
+                                    text: '\n3 Presses',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subhead
+                                        .copyWith(
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? Colors.red[900]
+                                              : Colors.red,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  TextSpan(
+                                    text: '\nof your power button',
+                                    style: Theme.of(context).textTheme.subtitle,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

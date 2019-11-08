@@ -66,7 +66,10 @@ class _RecentLocListState extends State<RecentLocList> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildList(context);
+    return Container(
+      height: 110.0,
+      child: _buildList(context),
+    );
   }
 
   ListView _buildList(context) {
@@ -77,7 +80,6 @@ class _RecentLocListState extends State<RecentLocList> {
         if (int == 4) {
           return Container(
             margin: EdgeInsets.fromLTRB(8.0, 0.0, 16.0, 0.0),
-            height: 100.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
             ),

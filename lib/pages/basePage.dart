@@ -11,6 +11,7 @@ import 'package:secalert/widgets/sendAlertBottomSheet.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:toast/toast.dart';
 import 'package:vibration/vibration.dart';
+import 'package:secalert/utils/screenState.dart';
 
 class BasePage extends StatefulWidget {
   static final basePageScaffoldKey = GlobalKey<State>();
@@ -37,7 +38,7 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
     'Send Alert',
     'Save',
     'Locate',
-    'Add Location',
+    'Add Loc',
   ];
 
   final List fabIcons = [
@@ -69,12 +70,14 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    ScreenState().startListening();
   }
 
   @override
   void dispose() {
     super.dispose();
     WidgetsBinding.instance.removeObserver(this);
+    // ScreenState().stopListening();
   }
 
   @override

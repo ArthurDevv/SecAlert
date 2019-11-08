@@ -26,15 +26,13 @@ class _CurrLocPreviewMapState extends State<CurrLocPreviewMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+    return Expanded(
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
         elevation: 4.0,
-        margin: EdgeInsets.zero,
+        margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: Stack(
@@ -46,7 +44,6 @@ class _CurrLocPreviewMapState extends State<CurrLocPreviewMap> {
               ),
               GestureDetector(
                 child: Container(
-                  height: 200.0,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -68,51 +65,53 @@ class _CurrLocPreviewMapState extends State<CurrLocPreviewMap> {
                   });
                 },
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            initialLocs.elementAt(0).locName,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                            initialLocs.elementAt(0).locLandMark,
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14.0,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 40.0),
+                  ],
+                ),
+              ),
               Positioned(
-                top: 1.0,
-                left: 10.0,
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 30,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              initialLocs.elementAt(0).locName,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.0,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Text(
-                              initialLocs.elementAt(0).locLandMark,
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14.0,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          EvaIcons.editOutline,
-                          color: Colors.white,
-                        ),
-                        tooltip: 'Edit this location',
-                        onPressed: () {},
-                      ),
-                    ],
+                top: -4.0,
+                right: -2.0,
+                child: IconButton(
+                  icon: Icon(
+                    EvaIcons.editOutline,
+                    color: Colors.white,
                   ),
+                  tooltip: 'Edit this location',
+                  onPressed: () {},
                 ),
               ),
             ],

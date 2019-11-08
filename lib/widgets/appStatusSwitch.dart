@@ -11,10 +11,13 @@ class _AppStatusSwitchState extends State<AppStatusSwitch> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    Orientation deviceOrientation = MediaQuery.of(context).orientation;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
       child: Container(
-        width: double.infinity,
+        width: deviceWidth,
         height: 50.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
@@ -61,7 +64,9 @@ class _AppStatusSwitchState extends State<AppStatusSwitch> {
                     child: AnimatedContainer(
                       duration: Duration(milliseconds: 900),
                       curve: Curves.fastLinearToSlowEaseIn,
-                      width: MediaQuery.of(context).size.width - 66.0,
+                      width: deviceOrientation == Orientation.portrait
+                          ? deviceWidth - 66.0
+                          : deviceWidth - 410.0,
                       height: 50.0,
                       decoration: BoxDecoration(
                         color: _appStatus
@@ -72,14 +77,19 @@ class _AppStatusSwitchState extends State<AppStatusSwitch> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Center(
-                        child: Text(
-                          _appStatus
-                              ? 'Alert system is activated, tap to deactivate'
-                              : 'Alert system is deactivated, tap to activate',
-                          style: TextStyle(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            _appStatus
+                                ? 'Alert system is activated, tap to deactivate'
+                                : 'Alert system is deactivated, tap to activate',
+                            style: TextStyle(
                               color: Colors.white,
                               fontSize: 16.0,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ),

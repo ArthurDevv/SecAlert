@@ -21,7 +21,7 @@ class _RecentLocsCardState extends State<RecentLocsCard> {
     return Container(
       margin: EdgeInsets.all(8.0),
       width: 150.0,
-      // height: 100.0,
+      height: 100.0,
       decoration: BoxDecoration(
         color: Theme.of(context).brightness == Brightness.light
             ? Colors.white
