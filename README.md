@@ -12,23 +12,19 @@ SecAlert is a personal emergency alert app that allows the user to specify sever
 | Homepage | | Locations Setup |
 | :---: | --- | :---: |
 | <img src="readme_assets/homepage.gif" width="300"> ||  <img src="readme_assets/setup.gif" width="300"> |
-| Homepage with convenient alert system switch, || Fast and simple location and contacts |
-| recent locations and "Send Alert Button" || setup process |
+| Homepage with convenient alert system switch, <br> recent locations and "Send Alert Button" || Fast and simple location and contacts <br> setup process |
 
 | Map || History |
 | :---: | --- | :---: |
 | <img src="readme_assets/maps.gif" width="300"> || <img src="readme_assets/history.gif" width="300"> |
-| Full map to view and change || History page to view all locations added  |
-| each location's GPS coordinates || as well as recent alerts received and sent |
+| Full map to view and change <br> each location's GPS coordinates || History page to view all locations added <br> as well as recent alerts received and sent |
 
 | Schedule || User |
 | :---: | --- | :---: |
 | <img src="readme_assets/schedule.jpg" width="300"> || <img src="readme_assets/user.jpg" width="300"> |
-| Schedule automatic location  || User can specify various health |
-| switching for more control || related info for first responders |
+| Schedule automatic location <br> switching for more control || User can specify various health <br> related info for first responders |
 
 | Help & Info | 
 | :---: |
 | <img src="readme_assets/info.gif" width="300"> |
-| Handy tips and recommendations |
-| to get the best from SecAlert |
+| Handy tips and recommendations <br> to get the best from SecAlert |
